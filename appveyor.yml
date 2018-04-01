@@ -23,3 +23,6 @@ dotnet_csproj:
 build:
   verbosity: minimal
 test: off
+artifacts:
+- path: NGitLab\NGitLab\bin\Release\NGitLab.Plus.*.nupkg
+  name: NGitLab.Plus
