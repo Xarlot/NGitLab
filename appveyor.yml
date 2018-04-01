@@ -1,4 +1,4 @@
-ersion: 2.0.{build}
+version: 2.0.{build}
 branches:
   only:
   - NGitLabPlus
