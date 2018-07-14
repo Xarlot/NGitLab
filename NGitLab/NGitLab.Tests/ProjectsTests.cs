@@ -55,6 +55,7 @@ namespace NGitLab.Tests {
                 created2.IssuesEnabled.ShouldBe(p.IssuesEnabled);
                 created2.MergeRequestsEnabled.ShouldBe(p.MergeRequestsEnabled);
                 created2.Name.ShouldBe(p.Name);
+                created2.Public.ShouldBeTrue();
                 projects.Delete(created2.Id).ShouldBeTrue();
             }
             catch (Exception) {

@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.Serialization;
 
@@ -58,7 +60,7 @@ namespace NGitLab.Models {
         [DataMember(Name = "import_url")]
         public string ImportUrl { get; set; }
 
-        [DataMember(Name = "visibility_level")]
+        [DataMember(Name = "visibility"), JsonConverter(typeof( StringEnumConverter),true)]
         public VisibilityLevel VisibilityLevel { get; set; }
 
         [DataMember(Name = "public_jobs")]

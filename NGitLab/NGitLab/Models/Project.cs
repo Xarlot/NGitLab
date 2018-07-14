@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Runtime.Serialization;
 
 namespace NGitLab.Models {
@@ -21,8 +23,7 @@ namespace NGitLab.Models {
         [DataMember(Name = "owner")]
         public User Owner { get; set; }
 
-        [DataMember(Name = "public")]
-        public bool Public { get; set; }
+        public bool Public { get { return VisibilityLevel == VisibilityLevel.Public; } }
 
         [DataMember(Name = "path")]
         public string Path { get; set; }
@@ -74,8 +75,9 @@ namespace NGitLab.Models {
         public bool LFSEnabled { get; set; }
         [DataMember(Name = "creator_id")]
         public int  CreatorID { get; set; }
- 
-        
+        [DataMember(Name = "visibility"), JsonConverter(typeof(StringEnumConverter), true)]
+        public VisibilityLevel VisibilityLevel { get; set; }
+
 
     }
 }
