@@ -2,7 +2,7 @@
 using System.Diagnostics;
 
 namespace NGitLab.Impl {
-    [DebuggerStepThrough]
+    //[DebuggerStepThrough]
     public class Api {
         public enum ApiVersion
         {
@@ -42,7 +42,7 @@ namespace NGitLab.Impl {
         public Uri GetApiUrl(string tailApiUrl) {
             if (!tailApiUrl.StartsWith("/"))
                 tailApiUrl = "/" + tailApiUrl;
-            return new Uri($"{hostUrl}/api/{(_ApiVersion== ApiVersion.V3?"v3":"v4")}{tailApiUrl}");
+            return new Uri($"{hostUrl}{(hostUrl.EndsWith("/")?"":"/")}api/{(_ApiVersion== ApiVersion.V3?"v3":"v4")}{tailApiUrl}");
         }
 
         public Uri GetUrl(string tailApiUrl) {
