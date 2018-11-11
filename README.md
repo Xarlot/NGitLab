@@ -1,8 +1,8 @@
-![License](https://img.shields.io/github/license/franklin89/NGitLab.svg)
-[![Build status](https://ci.appveyor.com/api/projects/status/4sufsyhxh9m7ga6g?svg=true)](https://ci.appveyor.com/project/Franklin89/ngitlab)
+![License](https://img.shields.io/github/license/maikebing/NGitLab.svg)
+[![Build status](https://ci.appveyor.com/api/projects/status/mnrc72h8t4sj8krj?svg=true)](https://ci.appveyor.com/project/MaiKeBing/ngitlab)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/ML-Software/NGitLab?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Nuget Version](https://img.shields.io/nuget/v/NGitLab.svg)](https://www.nuget.org/packages/NGitLab/)
-[![Nuget Version](https://img.shields.io/nuget/vpre/NGitLab.svg)](https://www.nuget.org/packages/NGitLab/)
+[![Nuget Version](https://img.shields.io/nuget/v/NGitLab.Plus.svg)](https://www.nuget.org/packages/NGitLab.Plus/)
+[![Nuget Version](https://img.shields.io/nuget/vpre/NGitLab.Plus.svg)](https://www.nuget.org/packages/NGitLab.Plus/)
 
 # NGitLab
 
