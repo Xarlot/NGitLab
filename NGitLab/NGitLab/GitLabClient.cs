@@ -35,9 +35,10 @@ namespace NGitLab {
             switch (apiVersion)
 
             {
+                case Api.ApiVersion.V3_1:
                 case Api.ApiVersion.V3:
                 case Api.ApiVersion.V4:
-                    var session = api.Post().To<Session>($"/session?login={HttpUtility.UrlEncode(username)}&password={HttpUtility.UrlEncode(password)}");
+                    var session = api.Post().To<Session>($"/session?{(apiVersion== Api.ApiVersion.V3_1?"email":"login")}={HttpUtility.UrlEncode(username)}&password={HttpUtility.UrlEncode(password)}");
                     PrivateToken = session.PrivateToken;
                     break;
                 case Api.ApiVersion.V3_Oauth:

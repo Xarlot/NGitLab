@@ -9,7 +9,8 @@ namespace NGitLab.Impl {
             V3,
             V4,
             V3_Oauth,
-            V4_Oauth
+            V4_Oauth,
+            V3_1
         }
         readonly string hostUrl;
         public readonly string ApiToken;
@@ -42,7 +43,7 @@ namespace NGitLab.Impl {
         public Uri GetApiUrl(string tailApiUrl) {
             if (!tailApiUrl.StartsWith("/"))
                 tailApiUrl = "/" + tailApiUrl;
-            return new Uri($"{hostUrl}{(hostUrl.EndsWith("/")?"":"/")}api/{(_ApiVersion== ApiVersion.V3?"v3":"v4")}{tailApiUrl}");
+            return new Uri($"{hostUrl}{(hostUrl.EndsWith("/")?"":"/")}api/{((_ApiVersion== ApiVersion.V3 || _ApiVersion== ApiVersion.V3_1) ?"v3":"v4")}{tailApiUrl}");
         }
 
         public Uri GetUrl(string tailApiUrl) {
