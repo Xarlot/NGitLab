@@ -1,9 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45; netstandard2.0
+    <TargetFrameworks>
+      net40;net45; netstandard2.0
     </TargetFrameworks>
-    
+
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!</Description>
     <Authors>Scooletz, Franklin89,krac,Xarlot,MaikeBing</Authors>
@@ -12,7 +13,7 @@
     <PackageProjectUrl>https://github.com/maikebing/NGitLab</PackageProjectUrl>
     <RepositoryUrl></RepositoryUrl>
     <PackageTags>GitLab, API, NGitlab</PackageTags>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLab/master/LICENSE</PackageLicenseUrl>
+    <PackageLicense>https://raw.githubusercontent.com/maikebing/NGitLab/master/LICENSE</PackageLicense>
   </PropertyGroup>
 
   <ItemGroup>
@@ -38,5 +39,4 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-
 </Project>
