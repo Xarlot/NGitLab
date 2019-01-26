@@ -6,13 +6,13 @@
     
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!</Description>
-    <Authors>Scooletz, Franklin89,krac,Xarlot,Mysticboy</Authors>
+    <Authors>Scooletz, Franklin89,krac,Xarlot,MaikeBing</Authors>
     <Version>2.0.2</Version>
     <PackageId>NGitLab.Plus</PackageId>
     <PackageProjectUrl>https://github.com/maikebing/NGitLab</PackageProjectUrl>
     <RepositoryUrl></RepositoryUrl>
     <PackageTags>GitLab, API, NGitlab</PackageTags>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLab/v4api/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLab/master/LICENSE</PackageLicenseUrl>
   </PropertyGroup>
 
   <ItemGroup>
