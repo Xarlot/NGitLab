@@ -10,10 +10,15 @@
     <Authors>Scooletz, Franklin89,krac,Xarlot,MaikeBing</Authors>
     <Version>2.0.2</Version>
     <PackageId>NGitLab.Plus</PackageId>
-    <PackageProjectUrl>https://github.com/maikebing/NGitLab</PackageProjectUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <PackageProjectUrl>https://github.com/maikebing/NGitLabPlus</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/maikebing/NGitLabPlus</RepositoryUrl>
     <PackageTags>GitLab, API, NGitlab</PackageTags>
-    <PackageLicense>https://raw.githubusercontent.com/maikebing/NGitLab/master/LICENSE</PackageLicense>
+
+    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/LICENSE</PackageLicenseUrl>
+
+    <PackageIconUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/docs/NGitLabPlus.png</PackageIconUrl>
+
+    <Product>NGitLab+</Product>
   </PropertyGroup>
 
   <ItemGroup>
