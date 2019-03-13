@@ -31,7 +31,7 @@ namespace NGitLab.Impl {
             if (branch == "")
                 branch = "master";
 
-            if (api._ApiVersion == Api.ApiVersion.V4 || api._ApiVersion == Api.ApiVersion.V4_Oauth)
+            if (api._ApiVersion.IsV4())
             {
                 filePath = $"/files/{filePath}?ref={branch}";
             }
