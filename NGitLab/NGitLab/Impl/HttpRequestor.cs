@@ -132,12 +132,12 @@ namespace NGitLab.Impl {
 
       
        
-        static WebRequest SetupConnection(Uri url, MethodType methodType, string privateToken, Api.ApiVersion apiVersion) {
+        static WebRequest SetupConnection(Uri url, MethodType methodType, string privateToken, ApiVersion apiVersion) {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Method = methodType.ToString().ToUpperInvariant();
             request.Headers.Add("Accept-Encoding", "gzip");
             request.AutomaticDecompression = DecompressionMethods.GZip;
-            if (apiVersion == Api.ApiVersion.V3_Oauth || apiVersion == Api.ApiVersion.V4_Oauth)
+            if (apiVersion.UsesOauth())
             {
                 request.Headers["Authorization"] = "Bearer " + privateToken;
             }
@@ -158,8 +158,8 @@ namespace NGitLab.Impl {
         class Enumerable<T> : IEnumerable<T> {
             readonly string apiToken;
             readonly Uri startUrl;
-           readonly Api.ApiVersion _apiVersion;
-            public Enumerable(string apiToken, Uri startUrl, Api.ApiVersion _ApiVersion) {
+           readonly ApiVersion _apiVersion;
+            public Enumerable(string apiToken, Uri startUrl, ApiVersion _ApiVersion) {
                 this.apiToken = apiToken;
                 this.startUrl = startUrl;
                 _apiVersion = _ApiVersion;
@@ -175,11 +175,11 @@ namespace NGitLab.Impl {
 
             class Enumerator : IEnumerator<T> {
                 readonly string apiToken;
-                readonly Api.ApiVersion _apiVersion;
+                readonly ApiVersion _apiVersion;
                 readonly List<T> buffer = new List<T>();
                 Uri nextUrlToLoad;
 
-                public Enumerator(string apiToken, Uri startUrl, Api.ApiVersion _ApiVersion) {
+                public Enumerator(string apiToken, Uri startUrl, ApiVersion _ApiVersion) {
                     this.apiToken = apiToken;
                     nextUrlToLoad = startUrl;
                     _apiVersion = _ApiVersion;
@@ -194,7 +194,7 @@ namespace NGitLab.Impl {
                             return false;
 
                         var request = SetupConnection(nextUrlToLoad, MethodType.Get, apiToken, _apiVersion);
-                        if (_apiVersion == Api.ApiVersion.V3_Oauth || _apiVersion == Api.ApiVersion.V4_Oauth)
+                        if (_apiVersion.UsesOauth())
                         {
                             request.Headers["Authorization"] = "Bearer " + apiToken;
                         }

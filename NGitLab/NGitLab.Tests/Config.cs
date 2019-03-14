@@ -4,7 +4,7 @@
         public const string Secret = "y1ZcmHSidM4bqwYzjFPU";
 
         public static GitLabClient Connect() {
-            return GitLabClient.Connect(ServiceUrl,"maikebing","kissme", Impl.Api.ApiVersion.V3_1);
+            return GitLabClient.Connect(ServiceUrl,"maikebing","kissme", Impl.ApiVersion.V3_1);
         }
     }
 }

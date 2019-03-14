@@ -31,7 +31,16 @@ namespace NGitLab.Impl {
             if (branch == "")
                 branch = "master";
 
-            api.Get().Stream(repoPath + string.Format("/files?file_path={0}&ref={1}", filePath, branch), s =>
+            if (api._ApiVersion.IsV4())
+            {
+                filePath = $"/files/{filePath}?ref={branch}";
+            }
+            else
+            {
+                filePath = $"/files?file_path={filePath}&ref={branch}";
+            }
+
+            api.Get().Stream(repoPath + filePath, s =>
             {
                 if (parser != null)
                     parser(s);
