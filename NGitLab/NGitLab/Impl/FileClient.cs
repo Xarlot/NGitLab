@@ -12,16 +12,25 @@ namespace NGitLab.Impl {
             this.repoPath = repoPath;
         }
 
+        private string GetFilePath(string filePath, string branch)
+        {
+            filePath = System.Web.HttpUtility.UrlEncode(filePath);
+
+            return api._ApiVersion.IsV4()
+                ? $"/files/{filePath}?ref={branch}"
+                : $"/files?file_path={filePath}&ref={branch}";
+        }
+
         public void Create(FileUpsert file) {
-            api.Post().With(file).Stream(repoPath + "/files", s => { });
+            api.Post().With(file).Stream(repoPath + GetFilePath(file.Path, file.Branch), s => { });
         }
 
         public void Update(FileUpsert file) {
-            api.Put().With(file).Stream(repoPath + "/files", s => { });
+            api.Put().With(file).Stream(repoPath + GetFilePath(file.Path, file.Branch), s => { });
         }
 
         public void Delete(FileDelete file) {
-            api.Delete().With(file).Stream(repoPath + "/files", s => { });
+            api.Delete().With(file).Stream(repoPath + GetFilePath(file.Path, file.Branch), s => { });
         }
 
         public FileData Get(string filePath, string branch = "", System.Action<System.IO.Stream> parser = null)
@@ -31,14 +40,7 @@ namespace NGitLab.Impl {
             if (branch == "")
                 branch = "master";
 
-            if (api._ApiVersion.IsV4())
-            {
-                filePath = $"/files/{filePath}?ref={branch}";
-            }
-            else
-            {
-                filePath = $"/files?file_path={filePath}&ref={branch}";
-            }
+            filePath = $"{GetFilePath(filePath, branch)}";
 
             api.Get().Stream(repoPath + filePath, s =>
             {

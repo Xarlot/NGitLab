@@ -9,7 +9,7 @@ namespace NGitLab.Models {
         public string Path { get; set; }
 
         [Required]
-        [DataMember(Name = "branch_name")]
+        [DataMember(Name = "branch")]
         public string Branch { get; set; }
 
         [Required]
