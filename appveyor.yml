@@ -24,5 +24,5 @@ build:
   verbosity: minimal
 test: off
 artifacts:
-- path: NGitLab\NGitLab\bin\Release\NGitLab.Plus.*.nupkg
-  name: NGitLab.Plus
+- path: NGitLab\NGitLab\bin\Release\NGitLab.Plus-UDIntel*.nupkg
+  name: NGitLab.Plus-UDIntel
