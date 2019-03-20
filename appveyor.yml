@@ -26,3 +26,9 @@ test: off
 artifacts:
 - path: NGitLab\NGitLab\bin\Release\NGitLab.Plus-UDIntel*.nupkg
   name: NGitLab.Plus-UDIntel
+deploy:
+- provider: NuGet
+  api_key:
+    secure: PU0bPRkO2aQof2bCGjqULQbq3cu/ypakQxsPQrbKTH9p/QMMmMmk5hPD+sGhIKcz
+  on:
+    branch: /release-of-fork/
