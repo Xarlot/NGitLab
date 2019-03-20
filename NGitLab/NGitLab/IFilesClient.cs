@@ -9,7 +9,7 @@ namespace NGitLab {
         Task UpdateAsync(FileUpsert file);
         void Delete(FileDelete file);
         Task DeleteAsync(FileDelete file);
-        FileData Get(string filePath, string branch = "", System.Action<System.IO.Stream> parser = null);
-        Task<FileData> GetAsync(string filePath, string branch = "", System.Func<System.IO.Stream, Task> parser = null);
+        Task GetAsync(string filePath, string branch, System.Func<System.IO.Stream, Task> parser);
+        Task<FileData> GetAsync(string filePath, string branch = "");
     }
 }

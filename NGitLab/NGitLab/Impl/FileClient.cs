@@ -13,14 +13,14 @@ namespace NGitLab.Impl {
             this.repoPath = repoPath;
         }
 
-        private string GetFilePath(string filePath, string branch)
+        private string GetFilePath(string filePath, string branch, bool raw = false)
         {
             filePath = System.Web.HttpUtility.UrlEncode(filePath);
             branch = System.Web.HttpUtility.UrlEncode(branch);
 
             return api._ApiVersion.IsV4()
-                ? $"/files/{filePath}?ref={branch}"
-                : $"/files?file_path={filePath}&ref={branch}";
+                ? $"/files/{filePath}{(raw ? "/raw" : null)}?ref={branch}"
+                : $"/files{(raw ? "/raw" : null)}?file_path={filePath}&ref={branch}";
         }
 
         public void Create(FileUpsert file) {
@@ -50,45 +50,23 @@ namespace NGitLab.Impl {
             return api.Delete().With(file).StreamAsync(repoPath + GetFilePath(file.Path, file.Branch), s => Task.FromResult(0));
         }
 
-
-        public FileData Get(string filePath, string branch = "", System.Action<System.IO.Stream> parser = null)
+        public Task GetAsync(string filePath, string branch, System.Func<Stream, Task> parser)
         {
-            FileData fileData = null;
-
-            if (branch == "")
-                branch = "master";
-
-            filePath = $"{GetFilePath(filePath, branch)}";
-
-            api.Get().Stream(repoPath + filePath, s =>
-            {
-                if (parser != null)
-                    parser(s);
-
-                StreamReader sr = new StreamReader(s);
-                var content = sr.ReadToEnd();
-                fileData = JsonConvert.DeserializeObject<FileData>(content);
-            });
-            return fileData;
+            return api.Get().StreamAsync(repoPath + GetFilePath(filePath, branch, true), parser);
         }
 
-
-        public async Task<FileData> GetAsync(string filePath, string branch = "", System.Func<Stream, Task> parser = null)
+        public async Task<FileData> GetAsync(string filePath, string branch = "")
         {
             FileData fileData = null;
 
             if (branch == "")
                 branch = "master";
 
-            filePath = $"{GetFilePath(filePath, branch)}";
-
-            await api.Get().StreamAsync(repoPath + filePath, async s =>
+            await api.Get().StreamAsync(repoPath + GetFilePath(filePath, branch), async s =>
             {
-                if (parser != null)
-                    await parser(s);
-
-                StreamReader sr = new StreamReader(s);
-                var content = sr.ReadToEnd();
+                string content;
+                using (var sr = new StreamReader(s))
+                    content = await sr.ReadToEndAsync();
                 fileData = JsonConvert.DeserializeObject<FileData>(content);
             });
 
