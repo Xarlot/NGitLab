@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using NGitLab.Models;
 
 namespace NGitLab.Impl {
@@ -20,6 +21,26 @@ namespace NGitLab.Impl {
         public IEnumerable<Tag> Tags => api.Get().GetAll<Tag>(repoPath + "/tags");
 
         public IEnumerable<TreeOrBlob> Tree => api.Get().GetAll<TreeOrBlob>(repoPath + "/tree");
+
+        public IEnumerable<TreeOrBlob> GetTree(string branch, string path, bool recursive, int perPage = 20)
+        {
+            var param = new List<string>();
+
+            if (!string.IsNullOrEmpty(branch))
+                param.Add($"ref={System.Web.HttpUtility.UrlEncode(branch)}");
+
+            if (!string.IsNullOrEmpty(path))
+                param.Add($"path={System.Web.HttpUtility.UrlEncode(branch)}");
+
+            if (recursive)
+                param.Add("recursive=true");
+
+            if (perPage != 20)
+                param.Add($"perPage={perPage}");
+
+            return api.Get().GetAll<TreeOrBlob>(repoPath + $"/tree?{string.Join("&", param)}");
+        }
+
 
         public IEnumerable<TreeOrBlob> TreeRecursive => api.Get().GetAll<TreeOrBlob>(repoPath + "/tree?recursive=true");
 

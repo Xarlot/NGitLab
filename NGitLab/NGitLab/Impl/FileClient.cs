@@ -16,6 +16,7 @@ namespace NGitLab.Impl {
         private string GetFilePath(string filePath, string branch)
         {
             filePath = System.Web.HttpUtility.UrlEncode(filePath);
+            branch = System.Web.HttpUtility.UrlEncode(branch);
 
             return api._ApiVersion.IsV4()
                 ? $"/files/{filePath}?ref={branch}"
