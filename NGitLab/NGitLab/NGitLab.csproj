@@ -6,10 +6,11 @@
     </TargetFrameworks>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!</Description>
+    <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!
+(UDIntel forked version)</Description>
     <Authors>Scooletz, Franklin89,krac,Xarlot,MaikeBing</Authors>
     <Version>2.0.2</Version>
-    <PackageId>NGitLab.Plus</PackageId>
+    <PackageId>NGitLab.Plus-UDIntel</PackageId>
     <PackageProjectUrl>https://github.com/maikebing/NGitLabPlus</PackageProjectUrl>
     <RepositoryUrl>https://github.com/maikebing/NGitLabPlus</RepositoryUrl>
     <PackageTags>GitLab, API, NGitlab</PackageTags>
@@ -19,6 +20,8 @@
     <PackageIconUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/docs/NGitLabPlus.png</PackageIconUrl>
 
     <Product>NGitLab+</Product>
+
+    <Company>Scooletz, Franklin89,krac,Xarlot,MaikeBing,UDIntel</Company>
   </PropertyGroup>
 
   <ItemGroup>
