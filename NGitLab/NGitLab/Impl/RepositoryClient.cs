@@ -48,6 +48,11 @@ namespace NGitLab.Impl {
             api.Get().Stream(repoPath + "/raw_blobs/" + sha, parser);
         }
 
+        public Task GetRawBlobAsync(string sha, Func<Stream, Task> parser)
+        {
+            return api.Get().StreamAsync(repoPath + "/raw_blobs/" + sha, parser);
+        }
+
         public IEnumerable<Commit> Commits => api.Get().GetAll<Commit>(repoPath + "/commits");
 
         public SingleCommit GetCommit(Sha1 sha) {
