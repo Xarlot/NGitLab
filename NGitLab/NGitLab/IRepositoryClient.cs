@@ -7,6 +7,7 @@ namespace NGitLab {
     public interface IRepositoryClient {
         IEnumerable<Tag> Tags { get; }
         IEnumerable<TreeOrBlob> Tree { get; }
+        IEnumerable<TreeOrBlob> TreeRecursive { get; }
         IEnumerable<Commit> Commits { get; }
         IFilesClient Files { get; }
         IBranchClient Branches { get; }

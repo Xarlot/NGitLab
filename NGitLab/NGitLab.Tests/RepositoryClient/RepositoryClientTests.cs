@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using NGitLab.Models;
 using NUnit.Framework;
 using Shouldly;
@@ -35,8 +36,7 @@ namespace NGitLab.Tests.RepositoryClient {
         public void CreateTag() {
             var tagCreate = new TagCreate();
             tagCreate.Ref = "master";
-            tagCreate.TagName = "my_test_tag";
-
+            tagCreate.TagName = Guid.NewGuid().ToString();
             Assert.IsNotNull(repo.CreateTag(tagCreate));
         }
     }

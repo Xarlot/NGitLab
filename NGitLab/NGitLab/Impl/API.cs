@@ -4,13 +4,6 @@ using System.Diagnostics;
 namespace NGitLab.Impl {
     //[DebuggerStepThrough]
     public class Api {
-        public enum ApiVersion
-        {
-            V3,
-            V4,
-            V3_Oauth,
-            V4_Oauth
-        }
         readonly string hostUrl;
         public readonly string ApiToken;
          internal     ApiVersion _ApiVersion { get; set; } = ApiVersion.V4_Oauth;
@@ -42,7 +35,7 @@ namespace NGitLab.Impl {
         public Uri GetApiUrl(string tailApiUrl) {
             if (!tailApiUrl.StartsWith("/"))
                 tailApiUrl = "/" + tailApiUrl;
-            return new Uri($"{hostUrl}{(hostUrl.EndsWith("/")?"":"/")}api/{(_ApiVersion== ApiVersion.V3?"v3":"v4")}{tailApiUrl}");
+            return new Uri($"{hostUrl}{(hostUrl.EndsWith("/")?"":"/")}api/{(_ApiVersion.IsV3() ?"v3":"v4")}{tailApiUrl}");
         }
 
         public Uri GetUrl(string tailApiUrl) {

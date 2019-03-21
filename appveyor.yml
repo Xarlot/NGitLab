@@ -11,7 +11,7 @@ assembly_info:
   assembly_file_version: '{version}'
   assembly_informational_version: '{version}'
 before_build:
-  - nuget restore NGitLab\NGitLab.sln
+  - nuget restore NGitLab\NGitLabPlus.sln
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'

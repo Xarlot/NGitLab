@@ -11,10 +11,10 @@ namespace NGitLab {
         public readonly IProjectClient Projects;
         public readonly IUserClient Users;
         public string ApiToken => api.ApiToken;
-        GitLabClient(string hostUrl, string apiToken) : this(hostUrl, apiToken, Api.ApiVersion.V4)
+        GitLabClient(string hostUrl, string apiToken) : this(hostUrl, apiToken, ApiVersion.V4)
         {
         }
-        GitLabClient(string hostUrl, string apiToken, Api.ApiVersion apiVersion)
+        GitLabClient(string hostUrl, string apiToken, ApiVersion apiVersion)
         {
             api = new Api(hostUrl, apiToken);
             api._ApiVersion = apiVersion;
@@ -25,34 +25,29 @@ namespace NGitLab {
         }
         public static GitLabClient Connect(string hostUrl, string username, string password)
         {
-            return Connect(hostUrl, username, password, Api.ApiVersion.V4_Oauth);
+            return Connect(hostUrl, username, password, ApiVersion.V4_Oauth);
         }
-        public static GitLabClient Connect(string hostUrl, string username, string password,Api.ApiVersion apiVersion)
+        public static GitLabClient Connect(string hostUrl, string username, string password, ApiVersion apiVersion)
         {
             var api = new Api(hostUrl, "");
             api._ApiVersion = apiVersion;
             string PrivateToken = null;
-            switch (apiVersion)
 
+            if (apiVersion.UsesOauth())
             {
-                case Api.ApiVersion.V3:
-                case Api.ApiVersion.V4:
-                    var session = api.Post().To<Session>($"/session?login={HttpUtility.UrlEncode(username)}&password={HttpUtility.UrlEncode(password)}");
-                    PrivateToken = session.PrivateToken;
-                    break;
-                case Api.ApiVersion.V3_Oauth:
-                case Api.ApiVersion.V4_Oauth:
-                    //https://docs.gitlab.com/ee/api/oauth2.html#resource-owner-password-credentials
-                    var token    = api.Post().With(new oauth() { UserName =username, Password = password, GrantType = "password" }).To<token>(oauth.Url);
-                    PrivateToken = token.AccessToken;
-                    break;
-                default:
-                    break;
+                //https://docs.gitlab.com/ee/api/oauth2.html#resource-owner-password-credentials
+                var token    = api.Post().With(new oauth() { UserName =username, Password = password, GrantType = "password" }).To<token>(oauth.Url);
+                PrivateToken = token.AccessToken;
+            }
+            else
+            {
+                var session = api.Post().To<Session>($"/session?{(apiVersion== ApiVersion.V3_1?"email":"login")}={HttpUtility.UrlEncode(username)}&password={HttpUtility.UrlEncode(password)}");
+                PrivateToken = session.PrivateToken;
             }
             return Connect(hostUrl, PrivateToken, apiVersion);
         }
         
-        public static GitLabClient Connect(string hostUrl, string apiToken,  Api.ApiVersion apiVersion)
+        public static GitLabClient Connect(string hostUrl, string apiToken,  ApiVersion apiVersion)
         {
             return new GitLabClient(hostUrl, apiToken, apiVersion);
         }

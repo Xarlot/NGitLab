@@ -1,25 +1,31 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net40;net45; netstandard2.0
+    <TargetFrameworks>
+      net40;net45; netstandard2.0
     </TargetFrameworks>
-    
+
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!</Description>
-    <Authors>Scooletz, Franklin89,krac,Xarlot,Mysticboy</Authors>
-    <Version>2.0.1</Version>
+    <Authors>Scooletz, Franklin89,krac,Xarlot,MaikeBing</Authors>
+    <Version>2.0.2</Version>
     <PackageId>NGitLab.Plus</PackageId>
-    <PackageProjectUrl>https://github.com/maikebing/NGitLab</PackageProjectUrl>
-    <RepositoryUrl></RepositoryUrl>
+    <PackageProjectUrl>https://github.com/maikebing/NGitLabPlus</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/maikebing/NGitLabPlus</RepositoryUrl>
     <PackageTags>GitLab, API, NGitlab</PackageTags>
-    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLab/v4api/LICENSE</PackageLicenseUrl>
+
+    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/LICENSE</PackageLicenseUrl>
+
+    <PackageIconUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/docs/NGitLabPlus.png</PackageIconUrl>
+
+    <Product>NGitLab+</Product>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.4.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -38,5 +44,4 @@
   <ItemGroup>
     <Folder Include="Properties\" />
   </ItemGroup>
-
 </Project>

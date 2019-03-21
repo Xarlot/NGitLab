@@ -21,6 +21,8 @@ namespace NGitLab.Impl {
 
         public IEnumerable<TreeOrBlob> Tree => api.Get().GetAll<TreeOrBlob>(repoPath + "/tree");
 
+        public IEnumerable<TreeOrBlob> TreeRecursive => api.Get().GetAll<TreeOrBlob>(repoPath + "/tree?recursive=true");
+
         public void GetRawBlob(string sha, Action<Stream> parser) {
             api.Get().Stream(repoPath + "/raw_blobs/" + sha, parser);
         }
