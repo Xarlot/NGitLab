@@ -29,6 +29,10 @@ namespace NGitLab.Impl {
             return api.Get().To<Project>(Project.Url + "/" + id);
         }
 
+        public IEnumerable<Project> Forks(int id) {
+            return this.api.Get().GetAll<Project>(Project.Url + $@"/{id}/forks");
+        }
+
 
         public Project Get(string namespacedpath)
         {
