@@ -6,7 +6,8 @@ namespace NGitLab.Models {
     public class Namespaces
     {
         public const string Url = "/namespaces";
-
+        public const string UrlV31 = "/user/namespaces";
+        
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
