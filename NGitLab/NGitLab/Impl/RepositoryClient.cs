@@ -30,7 +30,7 @@ namespace NGitLab.Impl {
                 param.Add($"ref={System.Web.HttpUtility.UrlEncode(branch)}");
 
             if (!string.IsNullOrEmpty(path))
-                param.Add($"path={System.Web.HttpUtility.UrlEncode(branch)}");
+                param.Add($"path={System.Web.HttpUtility.UrlEncode(path)}");
 
             if (recursive)
                 param.Add("recursive=true");
