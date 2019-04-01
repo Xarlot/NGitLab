@@ -24,19 +24,21 @@ namespace NGitLab.Impl {
             api.Delete().With(file).Stream(repoPath + "/files", s => { });
         }
 
-        public FileData Get(string filePath, string branch = "", System.Action<System.IO.Stream> parser = null)
+        public FileData Get(string filePath, string branch = "", System.Action<System.IO.Stream, long> parser = null)
         {
             FileData fileData = null;
 
             if (branch == "")
                 branch = "master";
 
-            api.Get().Stream(repoPath + string.Format("/files?file_path={0}&ref={1}", filePath, branch), s =>
+            api.Get().Stream(repoPath + string.Format("/files?file_path={0}&ref={1}", filePath, branch), (stream, length) =>
             {
-                if (parser != null)
-                    parser(s);
-
-                StreamReader sr = new StreamReader(s);
+                if (parser != null) { 
+                    parser(stream, length);
+                    return;
+                }
+                
+                StreamReader sr = new StreamReader(stream);
                 var content = sr.ReadToEnd();
                 fileData = JsonConvert.DeserializeObject<FileData>(content);
             });
