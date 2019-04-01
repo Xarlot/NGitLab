@@ -62,7 +62,7 @@ namespace NGitLab.Impl {
             try {
                 using (var response = req.GetResponse()) {
                     using (var stream = response.GetResponseStream()) {
-                        parser(stream, req.ContentLength);
+                        parser(stream, response.ContentLength);
                     }
                 }
             }
