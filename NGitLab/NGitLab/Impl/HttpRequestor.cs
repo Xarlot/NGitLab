@@ -43,7 +43,15 @@ namespace NGitLab.Impl {
             return result;
         }
 
-        public void Stream(string tailApiUrl, Action<Stream> parser) {
+        public void Stream(string tailApiUrl, Action<Stream> parser)
+        {
+            Stream(tailApiUrl, (stream, contentLength) =>
+            {
+                parser(stream);
+            });
+        }
+
+        public void Stream(string tailApiUrl, Action<Stream, long> parser) {
             var req = SetupConnection(root.GetApiUrl(tailApiUrl));
 
             if (HasOutput())
@@ -54,7 +62,7 @@ namespace NGitLab.Impl {
             try {
                 using (var response = req.GetResponse()) {
                     using (var stream = response.GetResponseStream()) {
-                        parser(stream);
+                        parser(stream, req.ContentLength);
                     }
                 }
             }
