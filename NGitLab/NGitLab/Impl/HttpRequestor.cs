@@ -184,6 +184,7 @@ namespace NGitLab.Impl {
             class Enumerator : IEnumerator<T> {
                 readonly string apiToken;
                 readonly ApiVersion _apiVersion;
+                private int port;
                 readonly List<T> buffer = new List<T>();
                 Uri nextUrlToLoad;
 
@@ -191,6 +192,7 @@ namespace NGitLab.Impl {
                     this.apiToken = apiToken;
                     nextUrlToLoad = startUrl;
                     _apiVersion = _ApiVersion;
+                    port = nextUrlToLoad.Port;
                 }
 
                 public void Dispose() {
@@ -200,7 +202,12 @@ namespace NGitLab.Impl {
                     if (buffer.Count == 0) {
                         if (nextUrlToLoad == null)
                             return false;
-
+                        if (nextUrlToLoad.Port != port)  // 修正端口
+                        {
+                            var ub = new UriBuilder(nextUrlToLoad);
+                            ub.Port = port;
+                            nextUrlToLoad = ub.Uri;
+                        }
                         var request = SetupConnection(nextUrlToLoad, MethodType.Get, apiToken, _apiVersion);
                         if (_apiVersion.UsesOauth())
                         {
