@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -35,23 +36,34 @@ namespace NGitLab.Impl {
         public T To<T>(string tailApiUrl) {
             var result = default(T);
             string json = null;
-            Stream(tailApiUrl, s => {
-                var data = new StreamReader(s).ReadToEnd();
+            Stream(tailApiUrl, s =>
+            {
+                string data;
+                using(var reader = new StreamReader(s))
+                    data = reader.ReadToEnd();
                 result = JsonConvert.DeserializeObject<T>(data);
                 json = data;
             });
             return result;
         }
 
-        public void Stream(string tailApiUrl, Action<Stream> parser)
+
+        public async Task<T> ToAsync<T>(string tailApiUrl)
         {
-            Stream(tailApiUrl, (stream, contentLength) =>
-            {
-                parser(stream);
+            var result = default(T);
+            string json = null;
+            await StreamAsync(tailApiUrl, async s => {
+                string data;
+                using(var reader = new StreamReader(s))
+                    data = await reader.ReadToEndAsync();
+                result = JsonConvert.DeserializeObject<T>(data);
+                json = data;
             });
+            return result;
         }
 
-        public void Stream(string tailApiUrl, Action<Stream, long> parser) {
+
+        public void Stream(string tailApiUrl, Action<Stream> parser) {
             var req = SetupConnection(root.GetApiUrl(tailApiUrl));
 
             if (HasOutput())
@@ -62,7 +74,7 @@ namespace NGitLab.Impl {
             try {
                 using (var response = req.GetResponse()) {
                     using (var stream = response.GetResponseStream()) {
-                        parser(stream, response.ContentLength);
+                        parser(stream);
                     }
                 }
             }
@@ -113,6 +125,75 @@ namespace NGitLab.Impl {
                 throw wex;
             }
         }
+
+        public async Task StreamAsync(string tailApiUrl, Func<Stream, Task> parser)
+        {
+            var req = SetupConnection(root.GetApiUrl(tailApiUrl));
+
+            if (HasOutput())
+                SubmitData(req);
+            else if (method == MethodType.Put)
+                req.Headers.Add("Content-Length", "0");
+
+            try
+            {
+                using (var response = await req.GetResponseAsync())
+                {
+                    using (var stream = response.GetResponseStream())
+                    {
+                       await parser(stream);
+                    }
+                }
+            }
+            catch (WebException wex)
+            {
+                if (wex.Response != null)
+                    using (var errorResponse = (HttpWebResponse)wex.Response)
+                    {
+                        using (var reader = new StreamReader(errorResponse.GetResponseStream()))
+                        {
+                            var jsonString = reader.ReadToEnd();
+                            if (!string.IsNullOrEmpty(jsonString))
+                            {
+                                JObject jsonerr = JsonConvert.DeserializeObject<JObject>(jsonString);
+                                var messaage = jsonerr.GetValue("message");
+                                if (messaage != null)
+                                {
+                                    if (messaage.Type == JTokenType.String && !messaage.Children().Any())
+                                    {
+                                        throw new Exception($"{errorResponse.StatusCode} {messaage}");
+                                    }
+                                    else if (messaage.Type == JTokenType.Object)
+                                    {
+                                        string errs = "";
+                                        foreach (var item in messaage.Children())
+                                        {
+                                            if (item.Type == JTokenType.Property)
+                                            {
+                                                JProperty jProperty = item as JProperty;
+                                                errs += $" {jProperty.Name } {jProperty.Value}";
+                                            }
+                                        }
+                                        throw new Exception($"{errorResponse.StatusCode} {errs}");
+                                    }
+                                    else
+                                    {
+                                        throw new Exception($"{errorResponse.StatusCode} {jsonString}");
+                                    }
+                                }
+                                else
+                                {
+                                    var error = jsonerr.GetValue("error");
+                                    throw new Exception(error + " " + jsonerr.GetValue("error_description"));
+                                }
+                            }
+
+                        }
+                    }
+                throw wex;
+            }
+        }
+
 
         public IEnumerable<T> GetAll<T>(string tailUrl) {
             return new Enumerable<T>(root.ApiToken, root.GetApiUrl(tailUrl), root._ApiVersion);
