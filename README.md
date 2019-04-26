@@ -2,7 +2,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/mnrc72h8t4sj8krj?svg=true)](https://ci.appveyor.com/project/MaiKeBing/ngitlab)
 [![Gitter](https://badges.gitter.im/JoinChat.svg)](https://gitter.im/ML-Software/NGitLab?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Nuget Version](https://img.shields.io/nuget/v/NGitLab.Plus.svg)](https://www.nuget.org/packages/NGitLab.Plus/)
-[![Nuget Version](https://img.shields.io/nuget/vpre/NGitLab.Plus.svg)](https://www.nuget.org/packages/NGitLab.Plus/)
+ 
 
 # NGitLab
 
@@ -29,3 +29,11 @@ Get it from NuGet. You can simply install it with the Package Manager console:
 ## Maintainer
 
 Big thanks to @Scooletz to bringing this project to life. I am happy to continue his work.
+
+## Thanks
+[Scooletz](https://github.com/Scooletz)
+Franklin89
+[krac](https://github.com/krac)
+[Xarlot](https://github.com/Xarlot)
+[MaikeBing](https://github.com/maikebing)
+[UDIntel](https://github.com/stevenxi)
