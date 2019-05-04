@@ -12,7 +12,8 @@ namespace NGitLab.Json {
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
-            throw new NotImplementedException();
+            JToken token = JToken.FromObject(value.ToString());
+            token.WriteTo(writer);
         }
     }
 }
