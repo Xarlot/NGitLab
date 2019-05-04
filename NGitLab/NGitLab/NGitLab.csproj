@@ -6,8 +6,7 @@
     </TargetFrameworks>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!
-(UDIntel forked version)</Description>
+    <Description>Provides a .NET REST client implementation of GitLab API.Support Version : V3、V4 and OAuth!</Description>
     <Authors>Scooletz, Franklin89,krac,Xarlot,MaikeBing</Authors>
     <Version>2.0.2</Version>
     <PackageId>NGitLab.Plus</PackageId>
