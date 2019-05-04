@@ -24,7 +24,7 @@ Then use its properties. You can obtain the private token in your account page. 
 
 Get it from NuGet. You can simply install it with the Package Manager console:
 
-    PM> Install-Package NGitLab
+    PM> Install-Package NGitLab.Plus  
 
 ## Maintainer
 
