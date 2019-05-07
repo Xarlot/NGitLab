@@ -11,5 +11,6 @@ namespace NGitLab.Models {
 
         void DownloadArtifact(Job job, Action<Stream> parser);
         void DownloadTrace(Job job, Action<Stream> parser);
+        IEnumerable<Job> Get(Pipeline pipelineData);
     }
 }

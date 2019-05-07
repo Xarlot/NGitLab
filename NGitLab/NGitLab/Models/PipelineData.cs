@@ -9,7 +9,8 @@ namespace NGitLab.Models {
         failed,
         aborted,
         running,
-        canceled
+        canceled,
+        skipped,
     }
 
 
