@@ -53,10 +53,10 @@ namespace NGitLab.Models {
         public User Assignee;
 
         [DataMember(Name = "source_project_id")]
-        public int SourceProjectId;
+        public int? SourceProjectId;
 
         [DataMember(Name = "target_project_id")]
-        public int TargetProjectId;
+        public int? TargetProjectId;
 
         [DataMember(Name = "changes")]
         public MergeRequestFileData[] Files;
