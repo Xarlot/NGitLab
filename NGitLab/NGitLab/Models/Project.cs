@@ -23,7 +23,7 @@ namespace NGitLab.Models {
         [DataMember(Name = "owner")]
         public User Owner { get; set; }
 
-        public bool Public { get { return VisibilityLevel == VisibilityLevel.Public; } }
+        public bool Public => VisibilityLevel == VisibilityLevel.Public;
 
         [DataMember(Name = "path")]
         public string Path { get; set; }
@@ -62,7 +62,7 @@ namespace NGitLab.Models {
         public string[] Tags { get; set; }
         [DataMember(Name = "fork?")]
         public bool Fork { get; set; }
-       
+
         [DataMember(Name = "builds_enabled")]
         public bool BuildsEnabled { get; set; }
         [DataMember(Name = "snippets_enabled")]
@@ -74,10 +74,10 @@ namespace NGitLab.Models {
         [DataMember(Name = "lfs_enabled")]
         public bool LFSEnabled { get; set; }
         [DataMember(Name = "creator_id")]
-        public int  CreatorID { get; set; }
+        public int CreatorID { get; set; }
         [DataMember(Name = "visibility"), JsonConverter(typeof(StringEnumConverter), true)]
         public VisibilityLevel VisibilityLevel { get; set; }
-
-
+        [DataMember(Name = "statistics")]
+        public Statistics Statistics { get; set; }
     }
 }

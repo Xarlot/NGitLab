@@ -25,8 +25,8 @@ namespace NGitLab.Impl {
             return api.Get().GetAll<Project>(Project.Url + "/?starred=true");
         }
 
-        public Project Get(int id) {
-            return api.Get().To<Project>(Project.Url + "/" + id);
+        public Project Get(int id, bool statistics = false) {
+            return api.Get().To<Project>(Project.Url + "/" + id + "/?statistics=true");
         }
 
         public IEnumerable<Project> Forks(int id) {
