@@ -15,6 +15,7 @@ namespace NGitLab {
         IEnumerable<Commit> Commits { get; }
         IFilesClient Files { get; }
         IBranchClient Branches { get; }
+        IProtectedBranchClient ProtectedBranches { get; }
         IPipelinesClient Pipelines { get; }
         IJobsClient Jobs { get; }
         IProjectHooksClient ProjectHooks { get; }

@@ -69,6 +69,8 @@ namespace NGitLab.Impl {
 
         public IBranchClient Branches => new BranchClient(api, repoPath);
 
+        public IProtectedBranchClient ProtectedBranches => new ProtectedBranchClient(api, projectPath);
+
         public IPipelinesClient Pipelines => new PipelinesClient(api, projectPath);
 
         public IJobsClient Jobs => new JobsClient(api, projectPath);
