@@ -62,5 +62,8 @@ namespace NGitLab.Models {
 
         [DataMember(Name = "labels")]
         public string[] Labels { get; set; }
+
+        [DataMember(Name = "merge_when_pipeline_succeeds")]
+        public bool? mergeWhenPipelineSucceeds { get; set; }
     }
 }
