@@ -29,7 +29,12 @@ namespace NGitLab.Impl {
                 .To<MergeRequest>(projectPath + "/merge_requests");
         }
 
-        public MergeRequest Update(int mergeRequestId, MergeRequestUpdate mergeRequest) {
+        public MergeRequest Delete(int mergeRequestIid)
+        {
+            return api.Delete().To<MergeRequest>(projectPath + "/merge_requests/" + mergeRequestIid);
+        }
+        public MergeRequest Update(int mergeRequestId, MergeRequestUpdate mergeRequest)
+        {
             return api
                 .Put().With(mergeRequest)
                 .To<MergeRequest>(projectPath + "/merge_requests/" + mergeRequestId);
