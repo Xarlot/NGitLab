@@ -48,13 +48,19 @@ namespace NGitLab.Impl {
         public IEnumerable<TreeOrBlob> TreeRecursive => api.Get().GetAll<TreeOrBlob>(repoPath + "/tree?recursive=true");
 
         public void GetRawBlob(string sha, Action<Stream> parser) {
-            api.Get().Stream(repoPath + "/raw_blobs/" + sha, parser);
+            api.Get().Stream(repoPath + "/blobs/" + sha + "/raw", parser);
         }
 
         public Task GetRawBlobAsync(string sha, Func<Stream, Task> parser)
         {
-            return api.Get().StreamAsync(repoPath + "/raw_blobs/" + sha, parser);
+            return api.Get().StreamAsync(repoPath + "/blobs/" + sha + "/raw", parser);
         }
+
+        public Task GetArchiveAsync(string sha, Func<Stream, Task> parser)
+        {
+            return api.Get().StreamAsync(repoPath + "/archive.zip?sha=" + sha, parser);
+        }
+
 
         public IEnumerable<Commit> Commits => api.Get().GetAll<Commit>(repoPath + "/commits");
 

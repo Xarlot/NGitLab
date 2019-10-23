@@ -23,6 +23,7 @@ namespace NGitLab {
         IProjectSnippetsClient ProjectSnippets { get; }
         void GetRawBlob(string sha, Action<Stream> parser);
         Task GetRawBlobAsync(string sha, Func<Stream, Task> parser);
+        Task GetArchiveAsync(string sha, Func<Stream, Task> parser);
         SingleCommit GetCommit(Sha1 sha);
         IEnumerable<Diff> GetCommitDiff(Sha1 sha);
         CompareInfo Compare(Sha1 from, Sha1 to);
