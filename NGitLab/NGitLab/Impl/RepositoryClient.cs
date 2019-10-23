@@ -22,7 +22,7 @@ namespace NGitLab.Impl {
 
         public IEnumerable<TreeOrBlob> Tree => api.Get().GetAll<TreeOrBlob>(repoPath + "/tree");
 
-        public IEnumerable<TreeOrBlob> GetTree(string branch, string path, bool recursive, int perPage = 20)
+        public IEnumerable<TreeOrBlob> GetTree(string branch, string path, bool recursive, int perPage = 20, int page = 1)
         {
             var param = new List<string>();
 
@@ -37,6 +37,9 @@ namespace NGitLab.Impl {
 
             if (perPage != 20)
                 param.Add($"perPage={perPage}");
+
+            if (page > 1)
+                param.Add($"page={page}");
 
             return api.Get().GetAll<TreeOrBlob>(repoPath + $"/tree?{string.Join("&", param)}");
         }
@@ -57,6 +60,22 @@ namespace NGitLab.Impl {
 
         public SingleCommit GetCommit(Sha1 sha) {
             return api.Get().To<SingleCommit>(repoPath + "/commits/" + sha);
+        }
+
+        public IEnumerable<Commit> GetCommits(string branch, int perPage = 20, int page = 1)
+        {
+            var param = new List<string>();
+
+            if (!string.IsNullOrEmpty(branch))
+                param.Add($"ref={System.Web.HttpUtility.UrlEncode(branch)}");
+
+            if (perPage != 20)
+                param.Add($"perPage={perPage}");
+
+            if (page > 1)
+                param.Add($"page={page}");
+
+            return api.Get().GetAll<Commit>(repoPath + $"/commits?{string.Join("&", param)}");
         }
 
         public IEnumerable<Diff> GetCommitDiff(Sha1 sha) {

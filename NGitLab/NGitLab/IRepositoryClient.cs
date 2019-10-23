@@ -9,10 +9,12 @@ namespace NGitLab {
         IEnumerable<Tag> Tags { get; }
         IEnumerable<TreeOrBlob> Tree { get; }
 
-        IEnumerable<TreeOrBlob> GetTree(string branch, string path, bool recursive, int perPage = 20);
+        IEnumerable<TreeOrBlob> GetTree(string branch, string path, bool recursive, int perPage = 20, int page = 1);
 
         IEnumerable<TreeOrBlob> TreeRecursive { get; }
         IEnumerable<Commit> Commits { get; }
+        IEnumerable<Commit> GetCommits(string branch, int perPage = 20, int page = 1);
+
         IFilesClient Files { get; }
         IBranchClient Branches { get; }
         IPipelinesClient Pipelines { get; }
