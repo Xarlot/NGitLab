@@ -73,7 +73,7 @@ namespace NGitLab.Impl {
             var param = new List<string>();
 
             if (!string.IsNullOrEmpty(branch))
-                param.Add($"ref={System.Web.HttpUtility.UrlEncode(branch)}");
+                param.Add($"ref_name={System.Web.HttpUtility.UrlEncode(branch)}");
 
             if (perPage != 20)
                 param.Add($"perPage={perPage}");
