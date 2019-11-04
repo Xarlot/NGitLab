@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using NGitLab.Models;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -15,8 +16,8 @@ namespace NGitLab.Impl {
 
         private string GetFilePath(string filePath, string branch, bool raw = false)
         {
-            filePath = System.Web.HttpUtility.UrlEncode(filePath);
-            branch = System.Web.HttpUtility.UrlEncode(branch);
+            filePath = Uri.EscapeDataString(filePath);
+            branch = Uri.EscapeDataString(branch);
 
             return api._ApiVersion.IsV4()
                 ? $"/files/{filePath}{(raw ? "/raw" : null)}?ref={branch}"
