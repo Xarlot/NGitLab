@@ -11,6 +11,7 @@ namespace NGitLab.Models {
         running,
         canceled,
         skipped,
+        manual,
     }
 
 

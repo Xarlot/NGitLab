@@ -55,16 +55,19 @@ namespace NGitLab.Models {
 
         [DataMember(Name = "web_url")]
         public string WebUrl { get; set; }
+
         [DataMember(Name = "namespace")]
         public Namespace Namespace { get; set; }
 
         [DataMember(Name = "tag_list")]
         public string[] Tags { get; set; }
+
         [DataMember(Name = "fork?")]
         public bool Fork { get; set; }
 
         [DataMember(Name = "builds_enabled")]
         public bool BuildsEnabled { get; set; }
+
         [DataMember(Name = "snippets_enabled")]
         public bool SnippetsEnabled { get; set; }
 
@@ -73,10 +76,16 @@ namespace NGitLab.Models {
 
         [DataMember(Name = "lfs_enabled")]
         public bool LFSEnabled { get; set; }
+
         [DataMember(Name = "creator_id")]
         public int CreatorID { get; set; }
+
+        [DataMember(Name = "archived")]
+        public bool Archived { get; set; }
+
         [DataMember(Name = "visibility"), JsonConverter(typeof(StringEnumConverter), true)]
         public VisibilityLevel VisibilityLevel { get; set; }
+
         [DataMember(Name = "statistics")]
         public Statistics Statistics { get; set; }
     }
