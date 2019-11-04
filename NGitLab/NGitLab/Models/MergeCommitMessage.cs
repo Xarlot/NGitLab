@@ -5,5 +5,6 @@ namespace NGitLab.Models {
     public class MergeCommitMessage {
         [DataMember(Name = "merge_commit_message")]
         public string Message { get; set; }
+        public bool merge_when_pipeline_succeeds { get; set; }
     }
 }
