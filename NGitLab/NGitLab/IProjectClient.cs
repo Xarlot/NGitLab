@@ -8,6 +8,7 @@ namespace NGitLab {
         IEnumerable<Project> Owned();
         IEnumerable<Project> Membership();
         IEnumerable<Project> Starred();
+        IEnumerable<Project> Forks(int id);
         Project Get(int id);
         Task<Project> GetAsync(int id);
         Project Get(string namespacedpath);

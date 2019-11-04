@@ -28,10 +28,16 @@ namespace NGitLab.Models {
         [DataMember(Name = "updated_at")]
         public DateTime? UpdatedAt { get; set; }
 
+        [DataMember(Name = "finished_at")]
+        public DateTime? FinishedAt { get; set; }
+        
+        [DataMember(Name = "duration")]
+        public double? Duration { get; set; }
+
         [DataMember(Name = "started_at")]
         public DateTime? StartedAt { get; set; }
 
-        [DataMember(Name = "commited_at")]
-        public DateTime? CommitedAt { get; set; }
+        [DataMember(Name = "committed_at")]
+        public DateTime? CommittedAt { get; set; }
     }
 }
