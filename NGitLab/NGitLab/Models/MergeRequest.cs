@@ -52,10 +52,10 @@ namespace NGitLab.Models {
         public int ProjectId { get; set; }
 
         [DataMember(Name = "source_project_id")]
-        public int SourceProjectId { get; set; }
+        public int? SourceProjectId { get; set; }
 
         [DataMember(Name = "target_project_id")]
-        public int TargetProjectId { get; set; }
+        public int? TargetProjectId { get; set; }
 
         [DataMember(Name = "work_in_progress")]
         public bool? WorkInProgress { get; set; }
