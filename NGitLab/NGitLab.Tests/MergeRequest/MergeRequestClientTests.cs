@@ -60,7 +60,7 @@ namespace NGitLab.Tests.MergeRequest {
         }
         [Test]
         [Category("Server_Required")]
-        [Order(4)]
+        [Order(3)]
         public void CloseMergeRequest() {
             var mergeRequest = mergeRequestClient.AllInState(MergeRequestState.opened).FirstOrDefault(x => x.Title == "Merge my-super-feature into master updated");
             
@@ -74,12 +74,12 @@ namespace NGitLab.Tests.MergeRequest {
         [Test]
         [Category("Server_Required")]
         [Order(3)]
-      
+        [Ignore("todo")]
         public void AcceptMergeRequest() {
             var mergeRequest = mergeRequestClient.AllInState(MergeRequestState.opened).FirstOrDefault(x => x.Title == "Merge my-super-feature into master updated");
             var updatedMergeRequest = mergeRequestClient.Accept(
                 mergeRequest.Iid,
-                new MergeCommitMessage {Message = "Merge my-super-feature into master", merge_when_pipeline_succeeds =true});
+                new MergeCommitMessage {Message = "Merge my-super-feature into master"});
 
             updatedMergeRequest.State.ShouldBe(MergeRequestState.merged);
         }
