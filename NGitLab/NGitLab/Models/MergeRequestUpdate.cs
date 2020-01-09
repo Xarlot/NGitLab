@@ -19,6 +19,9 @@ namespace NGitLab.Models {
 
         [DataMember(Name = "description")]
         public string Description;
+
+        [DataMember(Name = "labels")]
+        public string Labels;
         
         [DataMember(Name = "state_event")]
         [JsonConverter(typeof(StringEnumConverter))]
