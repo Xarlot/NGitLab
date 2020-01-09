@@ -8,11 +8,24 @@
         reopened,
         // ReSharper restore InconsistentNaming
     }
+    public enum MergeRequestPipelineStatus
+    {
+        // ReSharper disable InconsistentNaming
+        running,
+        pending,
+        success,
+        failed,
+        canceled,
+        skipped
+        // ReSharper restore InconsistentNaming
+    }
     public enum MergeRequestStatus
     {
         // ReSharper disable InconsistentNaming
+        @unchecked,
         can_be_merged,
-        cannot_be_merged
+        cannot_be_merged,
+        cannot_be_merged_recheck
         // ReSharper restore InconsistentNaming
     }
 }

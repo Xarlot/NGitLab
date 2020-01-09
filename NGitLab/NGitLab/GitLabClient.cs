@@ -10,6 +10,8 @@ namespace NGitLab {
         public readonly IIssueClient Issues;
         public readonly IProjectClient Projects;
         public readonly IUserClient Users;
+        public readonly IDeployKeyClient DeployKeys;
+
         public string ApiToken => api.ApiToken;
         GitLabClient(string hostUrl, string apiToken) : this(hostUrl, apiToken, ApiVersion.V4)
         {
@@ -22,6 +24,7 @@ namespace NGitLab {
             Projects = new ProjectClient(api);
             Issues = new IssueClient(api);
             Groups = new NamespaceClient(api);
+            DeployKeys = new DeployKeyClient(api);
         }
         public static GitLabClient Connect(string hostUrl, string username, string password)
         {
