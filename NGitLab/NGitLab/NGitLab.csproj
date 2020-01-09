@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFrameworks>
-      net40;net45; netstandard2.0
+      <!--net40;-->net45; netstandard2.0
     </TargetFrameworks>
 
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -14,26 +14,30 @@
     <RepositoryUrl>https://github.com/maikebing/NGitLabPlus</RepositoryUrl>
     <PackageTags>GitLab, API, NGitlab</PackageTags>
 
-    <PackageLicenseUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/LICENSE</PackageLicenseUrl>
+    <PackageLicenseUrl></PackageLicenseUrl>
 
     <PackageIconUrl>https://raw.githubusercontent.com/maikebing/NGitLabPlus/master/docs/NGitLabPlus.png</PackageIconUrl>
 
     <Product>NGitLab+</Product>
+
+    <Company>Scooletz, Franklin89,krac,Xarlot,MaikeBing,UDIntel</Company>
+
+    <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
-  <ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
+  <!--<ItemGroup Condition=" '$(TargetFramework)' == 'net40' ">
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
-  </ItemGroup>
+  </ItemGroup>-->
   <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,5 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE.txt">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 </Project>
