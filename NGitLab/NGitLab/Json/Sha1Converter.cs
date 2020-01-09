@@ -1,5 +1,6 @@
 ﻿using System;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace NGitLab.Json {
     public class Sha1Converter : JsonConverter {
@@ -12,7 +13,8 @@ namespace NGitLab.Json {
         }
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer) {
-            throw new NotImplementedException();
+            JToken token = JToken.FromObject(value.ToString());
+            token.WriteTo(writer);
         }
     }
 }

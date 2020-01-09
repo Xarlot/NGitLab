@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using NGitLab.Models;
 
 namespace NGitLab.Impl {
@@ -32,11 +33,20 @@ namespace NGitLab.Impl {
         public IEnumerable<Project> Forks(int id) {
             return this.api.Get().GetAll<Project>(Project.Url + $@"/{id}/forks");
         }
+        public Task<Project> GetAsync(int id)
+        {
+            return api.Get().ToAsync<Project>(Project.Url + "/" + id);
+        }
 
 
         public Project Get(string namespacedpath)
         {
             return api.Get().To<Project>(Project.Url + "/" +  namespacedpath.Replace("/", "%2F"));
+        }
+
+        public Task<Project> GetAsync(string namespacedpath)
+        {
+            return api.Get().ToAsync<Project>(Project.Url + "/" + namespacedpath.Replace("/", "%2F"));
         }
 
 
