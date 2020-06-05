@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NGitLab.Json;
 using System.Runtime.Serialization;
 
 namespace NGitLab.Models
@@ -14,7 +15,7 @@ namespace NGitLab.Models
         [DataMember(Name = "ref")]
         public string @ref { get; set; }
         [DataMember(Name = "status")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter), true)]
         public MergeRequestPipelineStatus status { get; set; }
         [DataMember(Name = "web_url")]
         public string web_url { get; set; }
