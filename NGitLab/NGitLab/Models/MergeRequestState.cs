@@ -23,6 +23,7 @@
     {
         // ReSharper disable InconsistentNaming
         @unchecked,
+        checking,
         can_be_merged,
         cannot_be_merged,
         cannot_be_merged_recheck

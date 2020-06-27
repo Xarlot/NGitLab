@@ -28,6 +28,7 @@ namespace NGitLab {
         SingleCommit GetCommit(Sha1 sha);
         IEnumerable<Diff> GetCommitDiff(Sha1 sha);
         CompareInfo Compare(Sha1 from, Sha1 to);
+        CompareInfo Compare(string source, string target);
         CommitStatus GetCommitStatus(Sha1 sha);
         Tag CreateTag(TagCreate tag);
         bool DeleteTag(string tagName);

@@ -2,6 +2,7 @@
 using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NGitLab.Json;
 
 namespace NGitLab.Models {
     [DataContract]
@@ -15,7 +16,7 @@ namespace NGitLab.Models {
         public int Iid { get; set; }
 
         [DataMember(Name = "state")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter), true)]
         public MergeRequestState? State { get; set; }
 
         [DataMember(Name = "title")]
@@ -70,7 +71,7 @@ namespace NGitLab.Models {
         public bool? hasConflicts { get; set; }
 
         [DataMember(Name = "merge_status")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter), true)]
         public MergeRequestStatus? mergeStatus { get; set; }
 
         // Only filled by the "Get" method, not filled when using "All" or other methods (this is a API GitLab Rule)
