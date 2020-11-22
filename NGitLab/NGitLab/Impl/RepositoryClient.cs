@@ -87,8 +87,13 @@ namespace NGitLab.Impl {
         public IEnumerable<Diff> GetCommitDiff(Sha1 sha) {
             return api.Get().GetAll<Diff>(repoPath + "/commits/" + sha + "/diff");
         }
-        public CompareInfo Compare(Sha1 from, Sha1 to) {
+        public CompareInfo Compare(Sha1 from, Sha1 to)
+        {
             return api.Get().To<CompareInfo>(repoPath + $@"/compare?from={from}&to={to}");
+        }
+        public CompareInfo Compare(string source, string target)
+        {
+            return api.Get().To<CompareInfo>(repoPath + $@"/compare?from={target}&to={source}");
         }
         public IFilesClient Files => new FileClient(api, repoPath);
 
