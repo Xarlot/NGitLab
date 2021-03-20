@@ -22,7 +22,6 @@ namespace NGitLab {
             api._ApiVersion = apiVersion;
             Users = new UserClient(api);
             Projects = new ProjectClient(api);
-            Issues = new IssueClient(api);
             Groups = new NamespaceClient(api);
             DeployKeys = new DeployKeyClient(api);
         }
@@ -62,8 +61,17 @@ namespace NGitLab {
             return new RepositoryClient(api, projectId);
         }
 
-        public IMergeRequestClient GetMergeRequest(int projectId) {
+        public IMergeRequestClient GetMergeRequest(int projectId)
+        {
             return new MergeRequestClient(api, projectId);
+        }
+        public IIssueClient GetIssue(int projectId)
+        {
+            return new IssueClient(api, projectId);
+        }
+        public IMilestoneClient GetMilestone(int projectId)
+        {
+            return new MilestoneClient(api, projectId);
         }
     }
 }

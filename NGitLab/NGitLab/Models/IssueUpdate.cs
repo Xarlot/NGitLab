@@ -3,15 +3,12 @@ using System.Runtime.Serialization;
 
 namespace NGitLab.Models {
     [DataContract]
-    public class Issue {
+    public class IssueUpdate {
         [DataMember(Name = "id")]
         public int Id { get; set; }
 
         [DataMember(Name = "iid")]
         public int IssueId { get; set; }
-
-        [DataMember(Name = "project_id")]
-        public int ProjectId { get; set; }
 
         [DataMember(Name = "title")]
         public string Title { get; set; }
@@ -23,23 +20,17 @@ namespace NGitLab.Models {
         [DataMember(Name = "labels")]
         public string[] Labels { get; set; }
 
-        [DataMember(Name = "milestone")]
-        public Milestone Milestone { get; set; }
+        [DataMember(Name = "milestone_id", EmitDefaultValue = false)]
+        public int milestoneId { get; set; }
 
-        [DataMember(Name = "assignee")]
-        public Assignee Assignee { get; set; }
-
-        [DataMember(Name = "author")]
-        public Author Author { get; set; }
-
-        [DataMember(Name = "state")]
-        public string State { get; set; }
-
-        [DataMember(Name = "created_at")]
-        public DateTime CreatedAt { get; set; }
+        [DataMember(Name = "assignee_ids")]
+        public int[] assigneeIds { get; set; }
 
         [DataMember(Name = "updated_at")]
         public DateTime UpdatedAt { get; set; }
+
+        [DataMember(Name = "confidential")]
+        public bool confidential { get; set; }
 
         [DataMember(Name = "due_date")]
         public DateTime? dueDate { get; set; }
