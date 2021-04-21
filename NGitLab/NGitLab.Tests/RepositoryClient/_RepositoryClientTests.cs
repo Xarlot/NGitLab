@@ -12,6 +12,7 @@ namespace NGitLab.Tests.RepositoryClient {
         public void SetUp() {
             project = Config.Connect().Projects.Owned().FirstOrDefault();
             RepositoryClient = Config.Connect().GetRepository(project.Id);
+            //RepositoryClient.Compare("master","master-feature");
         }
     }
 }

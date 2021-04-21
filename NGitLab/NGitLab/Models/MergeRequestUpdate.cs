@@ -1,6 +1,7 @@
 ﻿using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
+using NGitLab.Json;
 
 namespace NGitLab.Models {
     [DataContract]
@@ -24,7 +25,7 @@ namespace NGitLab.Models {
         public string Labels;
         
         [DataMember(Name = "state_event")]
-        [JsonConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter), true)]
         public MergeRequestUpdateState? NewState { get; set; }
     }
 
