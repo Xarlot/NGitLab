@@ -10,6 +10,8 @@ namespace NGitLab
 
         IEnumerable<Issue> AllInState(IssueState state);
 
+        IEnumerable<Issue> Get(string title, IssueState state);
+
         Issue Get(int id);
 
         /// <summary>
@@ -37,6 +39,7 @@ namespace NGitLab
 
         IssueTimeTrack TimeSpentReset(int issueId);
         IssueTimeTrack TimeStats(int issueId);
+        Issue ChangeMilestone(int issueIid, int milestoneId);
         Issue ReopenIssue(int issueIid);
         Issue CloseIssue(int issueIid);
 
