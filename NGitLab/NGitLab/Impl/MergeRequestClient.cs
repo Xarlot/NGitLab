@@ -11,12 +11,12 @@ namespace NGitLab.Impl {
             projectPath = Project.Url + "/" + projectId;
         }
 
-        public IEnumerable<MergeRequest> All() {
-            return api.Get().GetAll<MergeRequest>(projectPath + "/merge_requests");
+        public IEnumerable<MergeRequest> All(bool withMergeStatusRecheck = false) {
+            return api.Get().GetAll<MergeRequest>(projectPath + "/merge_requests" + (withMergeStatusRecheck ? "?with_merge_status_recheck=true" : string.Empty));
         }
 
-        public IEnumerable<MergeRequest> AllInState(MergeRequestState state) {
-            return api.Get().GetAll<MergeRequest>(projectPath + "/merge_requests?state=" + state);
+        public IEnumerable<MergeRequest> AllInState(MergeRequestState state, bool withMergeStatusRecheck = false) {
+            return api.Get().GetAll<MergeRequest>(projectPath + "/merge_requests?state=" + state + (withMergeStatusRecheck ? "&with_merge_status_recheck=true" : string.Empty));
         }
 
         public MergeRequest Get(int id) {

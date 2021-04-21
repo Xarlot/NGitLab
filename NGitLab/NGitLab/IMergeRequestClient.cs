@@ -3,8 +3,8 @@ using NGitLab.Models;
 
 namespace NGitLab {
     public interface IMergeRequestClient {
-        IEnumerable<MergeRequest> All();
-        IEnumerable<MergeRequest> AllInState(MergeRequestState state);
+        IEnumerable<MergeRequest> All(bool withMergeStatusRecheck = false);
+        IEnumerable<MergeRequest> AllInState(MergeRequestState state, bool withMergeStatusRecheck = false);
         MergeRequest Get(int id);
 
         MergeRequest Create(MergeRequestCreate mergeRequest);

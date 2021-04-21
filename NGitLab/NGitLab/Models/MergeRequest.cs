@@ -65,18 +65,17 @@ namespace NGitLab.Models {
         public string[] Labels { get; set; }
 
         [DataMember(Name = "merge_when_pipeline_succeeds")]
-        public bool? mergeWhenPipelineSucceeds { get; set; }
+        public bool? MergeWhenPipelineSucceeds { get; set; }
 
         [DataMember(Name = "has_conflicts")]
-        public bool? hasConflicts { get; set; }
+        public bool? HasConflicts { get; set; }
 
         [DataMember(Name = "merge_status")]
         [JsonConverter(typeof(StringEnumConverter), true)]
-        public MergeRequestStatus? mergeStatus { get; set; }
+        public MergeRequestStatus? MergeStatus { get; set; }
 
         // Only filled by the "Get" method, not filled when using "All" or other methods (this is a API GitLab Rule)
         [DataMember(Name = "pipeline")]
-        public MergeRequestPipeline pipeline { get; set; }
-
+        public MergeRequestPipeline Pipeline { get; set; }
     }
 }
