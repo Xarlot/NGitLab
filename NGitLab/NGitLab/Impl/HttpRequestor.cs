@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -64,12 +65,23 @@ namespace NGitLab.Impl {
 
 
         public void Stream(string tailApiUrl, Action<Stream> parser) {
-            var req = SetupConnection(root.GetApiUrl(tailApiUrl));
-
+            HttpWebRequest req =(HttpWebRequest) SetupConnection(root.GetApiUrl(tailApiUrl));
+            req.AuthenticationLevel = System.Net.Security.AuthenticationLevel.None;
+            System.Net.ServicePointManager.ServerCertificateValidationCallback = delegate (Object obj, X509Certificate X509certificate, X509Chain chain, System.Net.Security.SslPolicyErrors errors)
+            {
+                return true;
+            };
+           
+           req.ServerCertificateValidationCallback = delegate (Object obj, X509Certificate X509certificate, X509Chain chain, System.Net.Security.SslPolicyErrors errors)
+            {
+                return true;
+            };
+           
             if (HasOutput())
                 SubmitData(req);
             else if (method == MethodType.Put)
                 req.Headers.Add("Content-Length", "0");
+          
 
             try {
                 using (var response = req.GetResponse()) {
