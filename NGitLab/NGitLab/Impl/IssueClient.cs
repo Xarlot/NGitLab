@@ -23,6 +23,12 @@ namespace NGitLab.Impl {
             return api.Get().GetAll<Issue>(projectPath + "/issues?state=" + state);
         }
 
+
+        public IEnumerable<Issue> Get(string title, IssueState state)
+        {
+            return api.Get().GetAll<Issue>(projectPath + "/issues?search="+title+"&in=title&state=" + state);
+        }
+
         public Issue Get(int id)
         {
             return api.Get().To<Issue>(projectPath + "/issues/" + id);
@@ -58,6 +64,11 @@ namespace NGitLab.Impl {
         {
             return api.Post().To<IssueTimeTrack>(projectPath + "/issues/" + issueIid + "/time_estimate?duration=" + duration);
             // return api.Get().GetAll<Issue>(projectPath + "/issues?state=" + state);
+        }
+
+        public Issue ChangeMilestone(int issueIid, int milestoneId)
+        {
+            return api.Put().To<Issue>(projectPath + "/issues/" + issueIid + "?milestone_id="+ milestoneId.ToString());
         }
 
         public Issue ReopenIssue(int issueIid)
