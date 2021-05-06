@@ -8,6 +8,8 @@ namespace NGitLab
     {
         IEnumerable<MergeRequestComment> All { get; }
 
+        IEnumerable<MergeRequestComment> FirstPage { get; }
+
         IEnumerable<MergeRequestDiscussion> Discussions { get; }
 
         [Obsolete("Use Add(MergeRequestCommentCreate comment)")]

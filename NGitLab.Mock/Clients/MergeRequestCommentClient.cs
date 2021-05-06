@@ -29,6 +29,18 @@ namespace NGitLab.Mock.Clients
             }
         }
 
+        public IEnumerable<Models.MergeRequestComment> FirstPage
+        {
+            get
+            {
+                using (Context.BeginOperationScope())
+                {
+                    var commentList = GetMergeRequest().Comments.Select(mr => mr.ToMergeRequestCommentClient()).OrderBy(mr => mr.CreatedAt).ToList();
+                    return commentList.Take(20);
+                }
+            }
+        }
+
         public IEnumerable<MergeRequestDiscussion> Discussions
         {
             get

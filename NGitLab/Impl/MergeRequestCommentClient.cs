@@ -19,6 +19,8 @@ namespace NGitLab.Impl
 
         public IEnumerable<MergeRequestComment> All => _api.Get().GetAll<MergeRequestComment>(_notesPath);
 
+        public IEnumerable<MergeRequestComment> FirstPage => _api.Get().To<IEnumerable<MergeRequestComment>>(_notesPath + "?order_by=created_at&page=1&per_page=20&sort=asc");
+
         public IEnumerable<MergeRequestDiscussion> Discussions => _api.Get().GetAll<MergeRequestDiscussion>(_discussionsPath);
 
         public MergeRequestComment Add(MergeRequestComment comment) => _api.Post().With(comment).To<MergeRequestComment>(_notesPath);
