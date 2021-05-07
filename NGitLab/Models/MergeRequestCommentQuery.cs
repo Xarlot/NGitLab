@@ -1,5 +1,11 @@
-﻿namespace NGitLab.Models
+﻿using System.Runtime.Serialization;
+
+namespace NGitLab.Models
 {
+    /// <summary>
+    /// Allows to use more advanced gitlab queries for getting projects.
+    /// </summary>
+    [DataContract]
     public class MergeRequestCommentQuery
     {
         /// <summary>
