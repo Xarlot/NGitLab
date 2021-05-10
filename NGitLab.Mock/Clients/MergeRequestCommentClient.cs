@@ -117,7 +117,7 @@ namespace NGitLab.Mock.Clients
                     comments = orderByUpdated ? comments.OrderByDescending(comment => comment.UpdatedAt) : comments.OrderByDescending(comment => comment.CreatedAt);
                 }
 
-                var pageIndex = query.PageIndex.HasValue ? query.PageIndex.Value : 0;
+                var pageIndex = query.Page.HasValue ? query.Page.Value - 1 : 0;
                 var perPage = query.PerPage.HasValue ? query.PerPage.Value : 20;
                 var lowerBound = pageIndex * perPage;
                 if (lowerBound >= comments.Count() || lowerBound < 0)
